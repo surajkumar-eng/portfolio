@@ -194,7 +194,7 @@ span {
 
 .home-img {
   flex: 1;
-  max-width: 40rem;
+  max-width: 30rem;
   position: relative;
   border-radius: 5%;
   box-shadow: 0 0 25px var(--primary-color);
