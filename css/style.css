@@ -47,13 +47,11 @@ body {
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
-
   background-color: var(--background-dark);
   color: var(--text-color);
   animation: pageFadeIn 1.2s ease-in-out;
 }
 
-/* Page Entry Animation */
 @keyframes pageFadeIn {
   0% {
     opacity: 0;
@@ -67,54 +65,55 @@ body {
 
 /* Header */
 header {
-  
-position: static;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   padding: 1rem 9%;
   background-color: var(--background-dark);
-  filter: drop-shadow(10px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .logo {
   font-size: 3rem;
-color: var(--text-color);
+  color: var(--text-color);
   font-weight: 800;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: transform 0.5s ease;
 }
-
 .logo:hover {
   transform: scale(1.1);
 }
 
-/* Hamburger */
+/* Hamburger Icon */
 .hamburger {
   display: none;
-  cursor: pointer;
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: var(--text-color);
+  cursor: pointer;
+  z-index: 1001;
 }
 
-/* Nav */
+/* Navigation Menu */
+nav {
+  display: flex;
+  align-items: center;
+}
+
 nav a {
   font-size: 1.8rem;
   color: var(--text-color);
   margin-left: 4rem;
   font-weight: 500;
-  transition: transform 0.3s ease, color 0.3s ease, border-bottom 0.3s ease;
+  transition: all 0.3s ease;
   border-bottom: 3px solid transparent;
-  display: inline-block;
-  cursor: pointer;
 }
 
 nav a:hover,
-nav a:focus,
 nav a.active {
   color: var(--primary-color);
   border-bottom: 3px solid var(--primary-color);
@@ -122,248 +121,212 @@ nav a.active {
 }
 
 /* Responsive Nav */
-@media(max-width: 995px) {
+@media (max-width: 995px) {
   .hamburger {
     display: block;
   }
 
   nav {
-  
-    display: none;
-    top: 5rem;
+    position: absolute;
+    top: 100%;
     right: 0;
-    width: 40%;
-    border-left: 3px solid var(--primary-color);
-    border-bottom: 3px solid var(--primary-color);
-    border-bottom-left-radius: 2rem;
-    padding: 1rem;
+    width: 60%;
+    background-color: var(--background-dark);
+    flex-direction: column;
+    padding: 2rem;
+    display: none;
+    border-left: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    border-bottom-left-radius: 1rem;
   }
 
   nav.active {
-    display: block;
+    display: flex;
   }
 
   nav a {
-    display: block;
+    margin: 2rem 0;
     font-size: 2rem;
-    margin: 3rem 0;
-  }
-
-  nav a:hover,
-  nav a.active {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border-bottom: 0.5rem solid var(--primary-color);
+    text-align: right;
   }
 }
 
-/* Sections */
+/* Section Padding */
 section {
   min-height: 100vh;
-  padding: 5rem 9% 5rem;
+  padding: 8rem 9% 5rem;
 }
 
 /* Home Section */
 .home {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 8rem;
-  background-color: var(--background-dark);
+  justify-content: center;
+  gap: 5rem;
+  flex-wrap: wrap;
+  padding-top: 4rem;
 }
 
-.home .home-content h1 {
+.home-content {
+  flex: 1;
+}
+
+.home-content h1 {
   font-size: 6rem;
   font-weight: 700;
   line-height: 1.3;
 }
 
-span {
-  color: rgb(0, 0, 255);
-}
-
-canvas#stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
 .home-content h3 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
   font-weight: 700;
 }
 
 .home-content p {
   font-size: 1.6rem;
+  margin-top: 1.5rem;
 }
 
+span {
+  color: var(--primary-color);
+}
+
+.home-img {
+  flex: 1;
+  max-width: 40rem;
+  position: relative;
+  border-radius: 5%;
+  box-shadow: 0 0 25px var(--primary-color);
+  overflow: hidden;
+  background: linear-gradient(to right, var(--primary-color) 0%, transparent 50%);
+}
 
 .home-img img {
   width: 100%;
   height: auto;
-  display: block;
   border-radius: 5%;
   object-fit: cover;
-  
-
-  cursor: pointer;
+  display: block;
 }
 
-
 /* Social Icons */
+.social-icons {
+  margin-top: 2rem;
+}
+
 .social-icons a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 4rem;
   height: 4rem;
-  background-color: transparent;
-  border: 0.2rem solid var(--text-color);
-  font-size: 2rem;
+  border: 2px solid var(--text-color);
   border-radius: 50%;
-  margin: 3rem 1.5rem 3rem 0;
+  margin-right: 1rem;
+  color: var(--text-color);
+  font-size: 2rem;
   transition: 0.3s ease;
-color: var(--text-color);
-  box-shadow: 0 0 25px var(--primary-color);
+  box-shadow: 0 0 10px var(--primary-color);
 }
 
 .social-icons a:hover {
-  color: var(--hover-color);
-  transform: scale(1.3) translateY(-5px);
+  transform: scale(1.2) translateY(-5px);
   background-color: var(--hover-bg);
-  box-shadow: 0 0 25px var(--primary-color);
+  color: var(--hover-color);
 }
 
 /* Button */
 .btn {
+  margin-top: 2rem;
   display: inline-block;
   padding: 1rem 2.8rem;
-  background-color: var(--background-dark);
   border-radius: 4rem;
   font-size: 1.6rem;
-  color: var(--primary-color);
-  letter-spacing: 0.3rem;
   font-weight: 600;
+  color: var(--primary-color);
   border: 2px solid var(--primary-color);
-  transition: 0.3s ease;
+  background: transparent;
   cursor: pointer;
+  transition: 0.3s ease;
 }
-
 .btn:hover {
-  transform: scale3d(1.03);
+  transform: scale(1.05);
   background-color: var(--hover-bg);
   color: var(--hover-color);
   box-shadow: 0 0 25px var(--primary-color);
 }
 
-/* Responsive */
-@media (max-width: 1000px) {
-  .home {
-    gap: 4rem;
-  }
-}
-
-@media(max-width: 995px) {
-  .home {
-    flex-direction: column;
-    margin: 5rem 4rem;
-  }
-
-  .home .home-content h3 {
-    font-size: 2.5rem;
-  }
-
-  .home-content h1 {
-    font-size: 5rem;
-  }
-
-  .home-img img {
-    width: 70vw;
-    margin-top: 4rem;
-  }
-}
-
-/* Canvas for Stars (if used) */
-
-.home-img {
-  position: relative; 
-  display: inline-block;
-  max-width: 35vw;
-  border-radius: 5%;
-  overflow: visible; 
-  padding: 0.3rem;
-  box-shadow: 0 0 25px var(--primary-color);
-  background: linear-gradient(to right, rgb(0, 4, 252) 0%, transparent 50%);
-}
-
-.shapes-container {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+/* Stars Canvas */
+canvas#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
-/* Common styles for all shapes */
+/* Floating Shapes */
+.shapes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 .shape {
   position: absolute;
   color: var(--primary-color);
   font-weight: bold;
   opacity: 0.7;
-  /* user-select: none; */
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
 
-/* Plus shape */
 .plus {
   font-size: 2.5rem;
   top: 10%;
   left: -10%;
-  animation-name: float1;
-  animation-duration: 6s;
+  animation: float1 6s infinite;
 }
 
-/* Circle shape */
 .circle {
-  width: 20px; height: 20px;
+  width: 20px;
+  height: 20px;
   border: 2px solid var(--primary-color);
-  border-radius: 5%;
+  border-radius: 50%;
   top: 50%;
   right: -15%;
-  animation-name: float2;
-  animation-duration: 8s;
+  animation: float2 8s infinite;
 }
 
-/* Cross shape */
 .cross {
   font-size: 2rem;
-  /* Change from 'left: 50%' to 'left: calc(100% + 10px)' to put it right outside the image */
-  left: calc(100% + 10px); /* 10px bahar right */
-  bottom: 15%; /* Same vertical position */
-  animation-name: float3;
-  animation-duration: 7s;
-  position: absolute;
+  left: calc(100% + 10px);
+  bottom: 15%;
+  animation: float3 7s infinite;
 }
 
-/* Float Animations */
 @keyframes float1 {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-15px) translateX(10px); }
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(10px, -15px); }
 }
 
 @keyframes float2 {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(20px) translateX(-10px); }
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, 20px); }
 }
 
 @keyframes float3 {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-10px) translateX(-15px); }
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-15px, -10px); }
 }
+
+
 
 
 .txt{
